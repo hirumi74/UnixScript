@@ -7,17 +7,19 @@ This script handles:
 ---
 
 ### Step 1: Create the Script File  
-```bash
+
+bash
 touch SetUpWebServer.sh
 nano SetUpWebServer.sh
-```
+
+
 
 ---
 
 ### Step 2: Copy the Script  
-Paste the content below into `SetUpWebServer.sh`:  
+Paste the content below into SetUpWebServer.sh:  
 
-```bash
+bash
 #!/bin/bash
 
 # Update packages and install Apache2
@@ -74,36 +76,46 @@ apache2ctl configtest
 # Restart Apache2
 systemctl restart apache2
 echo "Apache2 configuration applied and service restarted"
-```
+
+
 
 ---
 
 ### Step 3: Make the Script Executable  
-```bash
-chmod +x SetUpWebServer.sh
-```
+
+bash
+chmod 777 SetUpWebServer.sh
+
+
 
 ---
 
 ### Step 4: Run the Script  
 Execute the script:  
-```bash
+
+bash
 sudo ./SetUpWebServer.sh
-```
+
+
 
 ---
 
 ### Step 5: Verify the Setup  
 1. **Visit the Test Page:**  
    Open your browser and visit:  
-   ```
-   http://<your-server-ip>/
-   ```  
+   
+
+http://<your-server-ip>/
+
+  
 
 2. **Check Apache2 Service:**  
-   ```bash
+   
+
+bash
    systemctl status apache2
-   ```  
+
+  
 
 ---
 
@@ -124,4 +136,62 @@ sudo ./SetUpWebServer.sh
 - **Website is Running:**  
   ![image](https://github.com/user-attachments/assets/21dd6e5d-79d2-43c5-a607-1231ba122e77)
 
+### Automating Service Monitoring
+
+To ensure Apache2 remains active and is restarted automatically if it stops, you can use a script to check its status every 5 minutes.  
+
 ---
+
+#### Step 1: Create the Monitoring Script  
+
+1. Create a new script file for monitoring:  
+   ```bash
+   touch MonitorApache.sh
+   nano MonitorApache.sh
+   ```
+
+2. Add the following script content to `MonitorApache.sh`:  
+
+   ```bash
+   #!/bin/bash
+
+   # Check if Apache2 service is running
+   if ! systemctl is-active --quiet apache2; then
+       systemctl restart apache2
+       echo "$(date): Apache2 service restarted" >> /var/log/apache_monitor.log
+   else
+       echo "$(date): Apache2 service is running normally" >> /var/log/apache_monitor.log
+   fi
+   ```
+
+---
+
+#### Step 2: Set Permissions  
+
+Make the script executable:  
+```bash
+chmod 777 checkServices.sh
+```
+
+---
+
+#### Step 3: Schedule the Script with Cron  
+
+1. Enter as Root and open the crontab editor:  
+   ```bash
+   hilmi@unixubuntu:~$ sudo su
+   [sudo] password for hilmi:
+   root@unixubuntu:/home/hilmi# crontab -e
+   ```  
+
+2. Add the following line to run the monitoring script every 5 minutes:  
+   ![image](https://github.com/user-attachments/assets/fd1787ca-9856-4319-aedb-c2ff959d9808)
+   
+3. Save and exit the crontab editor.
+
+---
+
+### Example Output  
+
+- ![image](https://github.com/user-attachments/assets/b8ad0054-5892-4760-922e-8eef6d03c841)
+
