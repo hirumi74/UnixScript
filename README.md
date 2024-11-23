@@ -1,9 +1,3 @@
-# UnixScript: Automating Apache2 Web Server Setup
-
-This guide outlines a shell script to install, configure, and verify an Apache2 web server on a Unix-based system.  
-
----
-
 ## Overview  
 This script handles:  
 - Apache2 installation and firewall configuration.  
