@@ -127,4 +127,7 @@ sudo ./SetUpWebServer.sh
 - **Apache2 Service Running:**  
   ![Apache2 Service](https://github.com/user-attachments/assets/ddc8f149-579d-4c6a-9693-57cf85d30d48)
 
+- **Website is Running:**  
+  ![image](https://github.com/user-attachments/assets/21dd6e5d-79d2-43c5-a607-1231ba122e77)
+
 ---
