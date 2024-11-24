@@ -195,3 +195,21 @@ chmod 777 checkServices.sh
 
 - ![image](https://github.com/user-attachments/assets/b8ad0054-5892-4760-922e-8eef6d03c841)
 
+---
+
+### Troubleshooting  
+
+I observed that the script need root in order to be executed. so i have enter root environment where the crontab will be use root priviledge and created automation to check apache services every 5minutes and print the output to log file.
+---
+
+### Example Results  
+
+1. **Automation Confirmation:**  
+   The following image shows the script running via crontab:  
+   ![Root Crontab Running](https://github.com/user-attachments/assets/ecb4546b-faeb-4c2d-aa63-115e6627be42)
+
+2. **Script Execution Success:**  
+   This image confirms that the automation script is functioning as expected:  
+   ![Automation Output](https://github.com/user-attachments/assets/fa7176ff-4352-46a9-a7f1-d6497edf6f40)
+
+---
